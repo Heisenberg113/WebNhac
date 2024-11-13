@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/style.css")" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="App">
+        <div class="appSidebar">
+            <div class="wrapperSidebar">
+                <div class="sidebarLogo">
+                    <div class="logo"></div>
+                </div>
+                <ul class="navbarMenu">
+                    <li class="navbarItem " id="Songs">
+                        <div class="linkItem">
+                            <a href="/Admin/Songs"><span class="">Nhạc</span></a>
+                        </div>
+                    </li>
+                    <li class="navbarItem" id="Users">
+                        <div class="linkItem">
+                            <a href="/Admin/Users"><span class"">Tài Khoản</span></a>
+                        </div>
+                    </li>
+                    <li class="navbarItem" id="Singers">
+                        <div class="linkItem">
+                            <a href="/Admin/Singers"><span class"">Ca sí</span></a>
+                        </div>
+                    </li>
+                    <li class="navbarItem" id="Types">
+                        <div class="linkItem">
+                            <a href="/Admin/Types"><span class"">Thể loại</span></a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="appBody" id="appBody">
+            <div class="wrapperAppBody">
+                <div id="mainAppBody" class="mainAppBody">
+                    <div class="bodyContent">
+                        <div class="divBodyContent" id="divBodyContent">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    a:link {
+        text-decoration: none;
+    } 
+    a:visited {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: blue;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:active {
+        color: blue;
+        background-color: transparent;
+        text-decoration: none;
+    }
+</style>

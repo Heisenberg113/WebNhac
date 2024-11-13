@@ -1,90 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="WebNgheNhacModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Playlist_Songs">
-    <Key>
-      <PropertyRef Name="ID_Playlist" />
-      <PropertyRef Name="ID_Song" />
-    </Key>
-    <Property Name="ID_Playlist" Type="int" Nullable="false" />
-    <Property Name="ID_Song" Type="int" Nullable="false" />
-  </EntityType>
+<Schema Namespace="WebNgheNhacModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="WebNgheNhacModelStoreContainer">
+    <EntitySet Name="Playlists" EntityType="WebNgheNhacModel.Store.Playlists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Singers" EntityType="WebNgheNhacModel.Store.Singers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Songs" EntityType="WebNgheNhacModel.Store.Songs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="WebNgheNhacModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="WebNgheNhacModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Types" EntityType="WebNgheNhacModel.Store.Types" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Playlist_Songs" EntityType="WebNgheNhacModel.Store.Playlist_Songs" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="WebNgheNhacModel.Store.FK__Playlist__ID_Use__628FA481">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Playlists" EntitySet="Playlists" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Songs__ID_Singer__534D60F1" Association="WebNgheNhacModel.Store.FK__Songs__ID_Singer__534D60F1">
+      <End Role="Singers" EntitySet="Singers" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Playlist_Songs_Playlists" Association="WebNgheNhacModel.Store.FK_Playlist_Songs_Playlists">
+      <End Role="Playlists" EntitySet="Playlists" />
+      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Playlist_Songs_Songs" Association="WebNgheNhacModel.Store.FK_Playlist_Songs_Songs">
+      <End Role="Songs" EntitySet="Songs" />
+      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Songs__Type__52593CB81" Association="WebNgheNhacModel.Store.FK__Songs__Type__52593CB81">
+      <End Role="Types" EntitySet="Types" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Playlists">
     <Key>
       <PropertyRef Name="ID_Playlist" />
     </Key>
     <Property Name="ID_Playlist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name_Playlist" Type="nvarchar" MaxLength="50" />
-    <Property Name="ID_User" Type="int" />
+    <Property Name="Name_Playlist" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ID_User" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Singers">
     <Key>
       <PropertyRef Name="ID_Singer" />
     </Key>
     <Property Name="ID_Singer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar" Nullable="true" MaxLength="50" />
   </EntityType>
   <EntityType Name="Songs">
     <Key>
       <PropertyRef Name="ID_Song" />
     </Key>
     <Property Name="ID_Song" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NAME" Type="nvarchar" MaxLength="100" />
-    <Property Name="ID_Singer" Type="int" />
-    <Property Name="Path_Song" Type="nvarchar" MaxLength="100" />
-    <Property Name="Path_BackGround" Type="nvarchar" MaxLength="100" />
-    <Property Name="Type" Type="nvarchar" MaxLength="30" />
+    <Property Name="NAME" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="ID_Singer" Type="int" Nullable="true" />
+    <Property Name="Path_Song" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Path_BackGround" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="30" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="principal_id" Type="int" Nullable="false" />
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
-  <EntityType Name="Types">
-    <Key>
-      <PropertyRef Name="TypeName" />
-    </Key>
-    <Property Name="TypeName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="ID_User" />
     </Key>
     <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-    <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="PassWord" Type="nvarchar" Nullable="true" MaxLength="50" />
   </EntityType>
-  <Association Name="FK__Playlist___ID_Pl__656C112C">
-    <End Role="Playlists" Type="Self.Playlists" Multiplicity="1" />
-    <End Role="Playlist_Songs" Type="Self.Playlist_Songs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Playlists">
-        <PropertyRef Name="ID_Playlist" />
-      </Principal>
-      <Dependent Role="Playlist_Songs">
-        <PropertyRef Name="ID_Playlist" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Playlist___ID_So__66603565">
-    <End Role="Songs" Type="Self.Songs" Multiplicity="1" />
-    <End Role="Playlist_Songs" Type="Self.Playlist_Songs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Songs">
-        <PropertyRef Name="ID_Song" />
-      </Principal>
-      <Dependent Role="Playlist_Songs">
-        <PropertyRef Name="ID_Song" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Types">
+    <Key>
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Playlist_Songs">
+    <Key>
+      <PropertyRef Name="Playlists_ID_Playlist" />
+      <PropertyRef Name="Songs_ID_Song" />
+    </Key>
+    <Property Name="Playlists_ID_Playlist" Type="int" Nullable="false" />
+    <Property Name="Songs_ID_Song" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK__Playlist__ID_Use__628FA481">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="Playlists" Type="Self.Playlists" Multiplicity="*" />
+    <End Role="Users" Type="WebNgheNhacModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Playlists" Type="WebNgheNhacModel.Store.Playlists" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="ID_User" />
@@ -95,8 +100,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Songs__ID_Singer__534D60F1">
-    <End Role="Singers" Type="Self.Singers" Multiplicity="0..1" />
-    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+    <End Role="Singers" Type="WebNgheNhacModel.Store.Singers" Multiplicity="0..1" />
+    <End Role="Songs" Type="WebNgheNhacModel.Store.Songs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Singers">
         <PropertyRef Name="ID_Singer" />
@@ -106,9 +111,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Songs__Type__52593CB8">
-    <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
-    <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+  <Association Name="FK__Songs__Type__52593CB81">
+    <End Role="Types" Type="WebNgheNhacModel.Store.Types" Multiplicity="0..1" />
+    <End Role="Songs" Type="WebNgheNhacModel.Store.Songs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Types">
         <PropertyRef Name="TypeName" />
@@ -118,33 +123,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="WebNgheNhacModelStoreContainer">
-    <EntitySet Name="Playlist_Songs" EntityType="Self.Playlist_Songs" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Playlists" EntityType="Self.Playlists" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Singers" EntityType="Self.Singers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Songs" EntityType="Self.Songs" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Playlist___ID_Pl__656C112C" Association="Self.FK__Playlist___ID_Pl__656C112C">
-      <End Role="Playlists" EntitySet="Playlists" />
-      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Playlist___ID_So__66603565" Association="Self.FK__Playlist___ID_So__66603565">
-      <End Role="Songs" EntitySet="Songs" />
-      <End Role="Playlist_Songs" EntitySet="Playlist_Songs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Playlist__ID_Use__628FA481" Association="Self.FK__Playlist__ID_Use__628FA481">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Playlists" EntitySet="Playlists" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Songs__ID_Singer__534D60F1" Association="Self.FK__Songs__ID_Singer__534D60F1">
-      <End Role="Singers" EntitySet="Singers" />
-      <End Role="Songs" EntitySet="Songs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Songs__Type__52593CB8" Association="Self.FK__Songs__Type__52593CB8">
-      <End Role="Types" EntitySet="Types" />
-      <End Role="Songs" EntitySet="Songs" />
-    </AssociationSet>
-  </EntityContainer>
+  <Association Name="FK_Playlist_Songs_Playlists">
+    <End Role="Playlists" Type="WebNgheNhacModel.Store.Playlists" Multiplicity="1" />
+    <End Role="Playlist_Songs" Type="WebNgheNhacModel.Store.Playlist_Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Playlists">
+        <PropertyRef Name="ID_Playlist" />
+      </Principal>
+      <Dependent Role="Playlist_Songs">
+        <PropertyRef Name="Playlists_ID_Playlist" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Playlist_Songs_Songs">
+    <End Role="Playlist_Songs" Type="WebNgheNhacModel.Store.Playlist_Songs" Multiplicity="*" />
+    <End Role="Songs" Type="WebNgheNhacModel.Store.Songs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Songs">
+        <PropertyRef Name="ID_Song" />
+      </Principal>
+      <Dependent Role="Playlist_Songs">
+        <PropertyRef Name="Songs_ID_Song" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
