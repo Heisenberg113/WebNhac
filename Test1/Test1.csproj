@@ -112,8 +112,10 @@
   <ItemGroup>
     <Content Include="Content\playsong.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="fontEnd\css\admin.css" />
     <Content Include="fontEnd\css\grid.css" />
     <Content Include="fontEnd\css\style.css" />
+    <Content Include="fontEnd\js\admin.js" />
     <Content Include="fontEnd\js\main.js" />
     <Content Include="Global.asax" />
     <Content Include="img\1200x630mv.jpg" />
@@ -139,7 +141,6 @@
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Model1.edmx.sql" />
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

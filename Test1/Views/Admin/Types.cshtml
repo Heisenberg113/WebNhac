@@ -1,6 +1,27 @@
-﻿@model IEnumerable<Test1.Models.Types>
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/admin.css")" />
+
+@model IEnumerable<Test1.Models.Types>
 @{
     Layout = ViewBag.Layout;
 }
 
 <h2>Quản lý thể loại</h2>
+
+<table>
+    <tr>
+        <th>TenTheLoai</th>
+        <th>Tuy chon</th>
+    </tr>
+    @foreach (var t in ViewBag.Alltype)
+    {
+        <tr>
+            <td>@t.TypeName</td>
+            <td>
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src='~/fontEnd/js/admin.js'></script>

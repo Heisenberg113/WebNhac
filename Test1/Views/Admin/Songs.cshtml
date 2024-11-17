@@ -1,5 +1,35 @@
-﻿@{
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/admin.css")" />
+
+@model IEnumerable<Test1.Models.Songs>
+@{
     Layout = ViewBag.Layout;
 }
 
 <h2>Quản lý nhạc</h2>
+
+<table>
+    <tr>
+        <th>ID_Song</th>
+        <th>Name</th>
+        <th>Path_Song</th>
+        <th>Path_Background</th>
+        <th>Type</th>
+        <th>Tuy chon</th>
+    </tr>
+    @foreach (var t in ViewBag.Allsong)
+    {
+        <tr>
+            <td>@t.ID_Song</td>
+            <td>@t.NAME</td>
+            <td>@t.Path_Song</td>
+            <td>@t.Path_Background</td>
+            <td>@t.Type</td>
+            <td>
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src='~/fontEnd/js/admin.js'></script>

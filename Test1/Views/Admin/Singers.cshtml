@@ -1,6 +1,41 @@
-﻿@model IEnumerable<Test1.Models.Singers>
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/admin.css")" />
+
+@model IEnumerable<Test1.Models.Singers>
 @{
     Layout = ViewBag.Layout;
 }
 
 <h2>Quản lý ca sĩ</h2>
+
+<button id="openModalBtn">Thêm ca sĩ</button>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thêm ca sĩ</h3>
+        <label>Tên ca sĩ</label>
+        <input type="text" name="Tên" value="" />
+        <button>Thêm</button>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>ID_Singer</th>
+        <th>Name</th>
+        <th>Tuy chon</th>
+    </tr>
+    @foreach (var t in ViewBag.Allsinger)
+    {
+        <tr>
+            <td>@t.ID_Singer</td>
+            <td>@t.NAME</td>
+            <td>
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src='~/fontEnd/js/admin.js'></script>

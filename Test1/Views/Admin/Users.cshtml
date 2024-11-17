@@ -1,6 +1,30 @@
-﻿@model IEnumerable<Test1.Models.Users>
+﻿<link rel="stylesheet" type="text/css" href="@Url.Content("~/fontEnd/css/admin.css")" />
+@model IEnumerable<Test1.Models.Users>
 @{
     Layout = ViewBag.Layout;
 }
 
 <h2>Quản lý người dùng</h2>
+
+<table>
+    <tr>
+        <th>ID_User</th>
+        <th>UserName</th>
+        <th>PassWord</th>
+        <th>Tuy chon</th>
+    </tr>
+    @foreach (var t in ViewBag.Alluser)
+    {
+        <tr>
+            <td>@t.ID_User</td>
+            <td>@t.UserName</td>
+            <td>@t.PassWord</td>
+            <td>
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src='~/fontEnd/js/admin.js'></script>
